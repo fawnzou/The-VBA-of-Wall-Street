@@ -1,4 +1,4 @@
-Sub stock_mod()
+Sub stockVolume_mod()
     '---------------------------
     'Loop through all worksheets
     '---------------------------
@@ -39,8 +39,9 @@ Sub stock_mod()
             open_vol = ws.Cells(m, 3).Value
             'Check if we are still within the same ticker, if it is not...
             If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
+                
                 'Reset the total volume
-                vol_total = 0
+                total_vol = 0
                 'Set value for close volume
                 close_vol = ws.Cells(i, 6).Value
                 'Set value for column of Yearly Change
@@ -52,7 +53,7 @@ Sub stock_mod()
                 Else
                     ws.Cells(row, 11).Value = ws.Cells(row, 10).Value / open_vol
                     'Convert cell format to percentage
-                    ws.Cells(row, 11).Style = "Percent"
+                    ws.Cells(row, 11).NumberFormat = "0.00%"
                     
                 End If
                 
@@ -61,14 +62,11 @@ Sub stock_mod()
                     ws.Cells(row, 11).Interior.ColorIndex = 4
                 Else
                     ws.Cells(row, 11).Interior.ColorIndex = 3
-                                 
-
-class-mw/04-Pandas/1/Activities/04-Stu_DataFrameShop/Unsolved/DataFrameShop.ipynb
                 End If
-            'Reset the row of open volume
-            m = i + 1
-            'Reset the row of summary table
-            row = row + 1
+                'Reset the row of summary table
+                row = row + 1
+                'Reset the row of open volume
+                 m = i + 1
             End If
         Next i
         
@@ -77,3 +75,6 @@ class-mw/04-Pandas/1/Activities/04-Stu_DataFrameShop/Unsolved/DataFrameShop.ipyn
     Next ws
     
 End Sub
+
+
+
